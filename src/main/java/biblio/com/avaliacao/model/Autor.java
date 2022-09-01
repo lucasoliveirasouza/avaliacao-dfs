@@ -19,7 +19,8 @@ public class Autor {
         return id;
     }
 
-    @NotEmpty(message="O nome deverá ser informado!")
+    @NotEmpty(message="Você precisa informar o nome do autor")
+    @Length(min=2, max=200, message="O nome deverá ter entre 2 e 200 caracteres")
     public String getNome() {
         return nome;
     }
