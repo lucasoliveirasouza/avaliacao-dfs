@@ -52,7 +52,7 @@ public class EditoraController {
     }
 
     @ApiOperation(value="Atualiza uma editora")
-    @PutMapping("/editora")
+    @PutMapping("/editora/{id}")
     public ResponseEntity<Response<Editora>> atualizarEditora(@PathVariable(value = "id") long id, @Valid @RequestBody
     Editora novaEditora, BindingResult result)
     {

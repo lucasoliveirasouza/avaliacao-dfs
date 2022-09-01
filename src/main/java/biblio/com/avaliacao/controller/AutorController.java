@@ -52,7 +52,7 @@ public class AutorController {
     }
 
     @ApiOperation(value="Atualiza um autor")
-    @PutMapping("/autor")
+    @PutMapping("/autor/{id}")
     public ResponseEntity<Response<Autor>> atualizarAutor(@PathVariable(value = "id") long id, @Valid @RequestBody
     Autor novoAutor, BindingResult result)
     {
