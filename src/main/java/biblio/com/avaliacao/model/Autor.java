@@ -2,12 +2,10 @@ package biblio.com.avaliacao.model;
 
 import org.hibernate.validator.constraints.Length;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
+@Entity
 public class Autor {
 
     @Id
