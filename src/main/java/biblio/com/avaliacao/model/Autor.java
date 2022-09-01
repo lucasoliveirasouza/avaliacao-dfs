@@ -22,7 +22,6 @@ public class Autor {
     }
 
     @NotEmpty(message="O nome deverá ser informado!")
-    @Length(min=5, max=200, message="O nome deverá ter de 5 a 200 caracteres")
     public String getNome() {
         return nome;
     }
