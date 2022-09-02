@@ -17,6 +17,13 @@ public class Livro {
     @Column(nullable = false)
     private String titulo;
 
+    private int anoPublicacao;
+
+    @Column(nullable = false)
+    private String isbn;
+
+    private int quantidade;
+
     public long getId() {
         return id;
     }
