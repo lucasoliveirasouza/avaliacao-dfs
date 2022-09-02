@@ -28,6 +28,10 @@ public class Livro {
         return id;
     }
 
+    public void setId(long id) {
+        this.id = id;
+    }
+
     @NotEmpty(message="Você precisa informar o titulo do livro")
     @Length(min=2, max=200, message="O titulo do livro deverá ter entre 2 e 200 caracteres")
     public String getTitulo() {
@@ -38,7 +42,30 @@ public class Livro {
         this.titulo = titulo;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public int getAnoPublicacao() {
+        return anoPublicacao;
+    }
+
+    public void setAnoPublicacao(int anoPublicacao) {
+        this.anoPublicacao = anoPublicacao;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    @NotEmpty(message="Você precisa informar o ISBN do livro")
+    @Length(min=10, max=200, message="O ISBN do livro deverá ter entre 10 e 200 caracteres")
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
+    }
+
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public void setQuantidade(int quantidade) {
+        this.quantidade = quantidade;
     }
 }
