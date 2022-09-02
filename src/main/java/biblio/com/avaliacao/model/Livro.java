@@ -15,27 +15,23 @@ public class Livro {
     private long id;
 
     @Column(nullable = false)
-    private String nome;
+    private String titulo;
 
     public long getId() {
-
         return id;
     }
 
-    @NotEmpty(message="Você precisa informar o nome do livro")
-    @Length(min=2, max=200, message="O nome do gênero deverá ter entre 2 e 200 caracteres")
-    public String getNome() {
-
-        return nome;
+    @NotEmpty(message="Você precisa informar o titulo do livro")
+    @Length(min=2, max=200, message="O titulo do livro deverá ter entre 2 e 200 caracteres")
+    public String getTitulo() {
+        return titulo;
     }
 
-    public void setNome(String nome) {
-
-        this.nome = nome;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
     public void setId(long id) {
-
         this.id = id;
     }
 }
