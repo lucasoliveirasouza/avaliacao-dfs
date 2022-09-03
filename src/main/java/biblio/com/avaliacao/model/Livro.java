@@ -87,4 +87,29 @@ public class Livro {
 
         this.quantidade = quantidade;
     }
+
+
+    public Autor getAutor() {
+        return autor;
+    }
+
+    public void setAutor(Autor autor) {
+        this.autor = autor;
+    }
+
+    public Editora getEditora() {
+        return editora;
+    }
+
+    public void setEditora(Editora editora) {
+        this.editora = editora;
+    }
+
+    public Genero getGenero() {
+        return genero;
+    }
+
+    public void setGenero(Genero genero) {
+        this.genero = genero;
+    }
 }
