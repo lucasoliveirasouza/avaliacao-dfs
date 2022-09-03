@@ -2,10 +2,16 @@ package biblio.com.avaliacao.model;
 
 import org.hibernate.validator.constraints.Length;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
+
+@Getter
+@Setter
 public class Autor {
 
     @Id
@@ -13,27 +19,7 @@ public class Autor {
     private long id;
 
     @Column(nullable = false)
-    private String nome;
-
-    public long getId() {
-
-        return id;
-    }
-
     @NotEmpty(message="Você precisa informar o nome do autor")
     @Length(min=2, max=200, message="O nome deverá ter entre 2 e 200 caracteres")
-    public String getNome() {
-
-        return nome;
-    }
-
-    public void setNome(String nome) {
-
-        this.nome = nome;
-    }
-
-    public void setId(long id) {
-
-        this.id = id;
-    }
+    private String nome;
 }
