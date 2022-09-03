@@ -1,7 +1,5 @@
 package biblio.com.avaliacao.controller;
 
-
-
 import biblio.com.avaliacao.model.Livro;
 import biblio.com.avaliacao.repository.LivroRepository;
 import biblio.com.avaliacao.responses.Response;
