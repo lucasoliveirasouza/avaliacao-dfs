@@ -5,6 +5,7 @@ import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
+@Entity
 public class Livro {
 
     @Id
@@ -63,13 +64,14 @@ public class Livro {
         this.anoPublicacao = anoPublicacao;
     }
 
+    @NotEmpty(message="Você precisa informar o ISBN do livro")
+    @Length(min=10, max=200, message="O ISBN do livro deverá ter entre 10 e 200 caracteres")
     public String getIsbn() {
 
         return isbn;
     }
 
-    @NotEmpty(message="Você precisa informar o ISBN do livro")
-    @Length(min=10, max=200, message="O ISBN do livro deverá ter entre 10 e 200 caracteres")
+
 
     public void setIsbn(String isbn) {
 
