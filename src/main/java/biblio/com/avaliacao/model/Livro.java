@@ -2,10 +2,7 @@ package biblio.com.avaliacao.model;
 
 import org.hibernate.validator.constraints.Length;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 
 public class Livro {
@@ -23,6 +20,15 @@ public class Livro {
     private String isbn;
 
     private int quantidade;
+
+    @ManyToOne
+    private Autor autor;
+
+    @ManyToOne
+    private Editora editora;
+
+    private Genero genero;
+
 
     public long getId() {
         return id;
