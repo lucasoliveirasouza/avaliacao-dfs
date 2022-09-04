@@ -25,7 +25,7 @@ public class Livro {
     private String titulo;
 
     @Min(value = 1, message = "Para cadastrar um novo exemplar, seu ano de publicação deve ser superior a 1")
-    @Max(value = 2022, message = "Para cadastrar um novo exemplar, seu ano de publicação deve ser superior a 2022")
+    @Max(value = 2022, message = "Para cadastrar um novo exemplar, seu ano de publicação deve ser inferior a 2022")
     private int anoPublicacao;
 
     @Column(nullable = false)

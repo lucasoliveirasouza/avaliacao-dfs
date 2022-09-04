@@ -46,7 +46,7 @@ public class EditoraController {
         Response<Editora> response = new Response<Editora>();
         if (editoraRepository.existsByNome(editora.getNome())) {
             response.getErrors().add("Já existe uma editora com esse nome");
-        }
+    }
 
         if (result.hasErrors()  || response.getErrors().size() > 0) {
             result.getAllErrors().forEach(error -> response.getErrors().add(error.getDefaultMessage()));
