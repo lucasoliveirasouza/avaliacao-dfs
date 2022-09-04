@@ -2,6 +2,7 @@ package biblio.com.avaliacao.controller;
 
 import biblio.com.avaliacao.model.Genero;
 import biblio.com.avaliacao.repository.GeneroRepository;
+import biblio.com.avaliacao.responses.MessageResponse;
 import biblio.com.avaliacao.responses.Response;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,12 +40,15 @@ public class GeneroController {
 
     @ApiOperation(value="Cadastra um novo gênero")
     @PostMapping("/genero")
-    public ResponseEntity<Response<Genero>> cadastrarGenero(@Valid @RequestBody Genero genero, BindingResult result)
+    public ResponseEntity<?> cadastrarGenero(@Valid @RequestBody Genero genero, BindingResult result)
     {
         Response<Genero> response = new Response<Genero>();
         if (result.hasErrors()) {
             result.getAllErrors().forEach(error -> response.getErrors().add(error.getDefaultMessage()));
             return ResponseEntity.badRequest().body(response);
+        }
+        if (generoRepository.existsByNome(genero.getNome())) {
+            return ResponseEntity.badRequest().body(new MessageResponse("Erro: Já existe um genero com esse nome"));
         }
         generoRepository.save(genero);
         response.setData(genero);
