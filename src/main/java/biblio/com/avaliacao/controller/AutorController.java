@@ -42,6 +42,7 @@ public class AutorController {
     public ResponseEntity<Response<Autor>> cadastrarAutor(@Valid @RequestBody Autor autor, BindingResult result)
     {
         Response<Autor> response = new Response<Autor>();
+
         if (result.hasErrors()) {
             result.getAllErrors().forEach(error -> response.getErrors().add(error.getDefaultMessage()));
             return ResponseEntity.badRequest().body(response);
