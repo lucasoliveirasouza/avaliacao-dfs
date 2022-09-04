@@ -2,6 +2,7 @@ package biblio.com.avaliacao.controller;
 
 import biblio.com.avaliacao.model.Editora;
 import biblio.com.avaliacao.repository.EditoraRepository;
+import biblio.com.avaliacao.responses.MessageResponse;
 import biblio.com.avaliacao.responses.Response;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,12 +40,15 @@ public class EditoraController {
 
     @ApiOperation(value="Cadastra uma nova editora")
     @PostMapping("/editora")
-    public ResponseEntity<Response<Editora>> cadastrarEditora(@Valid @RequestBody Editora editora, BindingResult result)
+    public ResponseEntity<?> cadastrarEditora(@Valid @RequestBody Editora editora, BindingResult result)
     {
         Response<Editora> response = new Response<Editora>();
         if (result.hasErrors()) {
             result.getAllErrors().forEach(error -> response.getErrors().add(error.getDefaultMessage()));
             return ResponseEntity.badRequest().body(response);
+        }
+        if (editoraRepository.existsByNome(editora.getNome())) {
+            return ResponseEntity.badRequest().body(new MessageResponse("Erro: Já existe uma editora com esse nome"));
         }
         editoraRepository.save(editora);
         response.setData(editora);
