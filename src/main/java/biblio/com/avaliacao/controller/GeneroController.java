@@ -61,7 +61,8 @@ public class GeneroController {
     {
         Optional<Genero> antigoGenero = generoRepository.findById(id);
         Response<Genero> response = new Response<Genero>();
-        if (result.hasErrors()) {
+
+        if (result.hasErrors()  || response.getErrors().size() > 0) {
             result.getAllErrors().forEach(error -> response.getErrors().add(error.getDefaultMessage()));
             return ResponseEntity.badRequest().body(response);
         }
