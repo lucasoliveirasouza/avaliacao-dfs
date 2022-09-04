@@ -37,11 +37,14 @@ public class Livro {
     private int quantidade;
 
     @ManyToOne
+    @Column(nullable = false)
     private Autor autor;
 
     @ManyToOne
+    @Column(nullable = false)
     private Editora editora;
 
     @ManyToOne
+    @Column(nullable = false)
     private Genero genero;
 }
