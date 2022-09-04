@@ -2,7 +2,6 @@ package biblio.com.avaliacao.controller;
 
 import biblio.com.avaliacao.model.Autor;
 import biblio.com.avaliacao.repository.AutorRepository;
-import biblio.com.avaliacao.responses.MessageResponse;
 import biblio.com.avaliacao.responses.Response;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
