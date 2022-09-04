@@ -45,7 +45,7 @@ public class GeneroController {
         if (generoRepository.existsByNome(genero.getNome())) {
             response.getErrors().add("Já existe um gênero com esse nome");
         }
-        if (result.hasErrors()) {
+        if (result.hasErrors() || response.getErrors().size() > 0) {
             result.getAllErrors().forEach(error -> response.getErrors().add(error.getDefaultMessage()));
             return ResponseEntity.badRequest().body(response);
         }
@@ -62,7 +62,7 @@ public class GeneroController {
         Optional<Genero> antigoGenero = generoRepository.findById(id);
         Response<Genero> response = new Response<Genero>();
 
-        if (result.hasErrors()  || response.getErrors().size() > 0) {
+        if (result.hasErrors() ) {
             result.getAllErrors().forEach(error -> response.getErrors().add(error.getDefaultMessage()));
             return ResponseEntity.badRequest().body(response);
         }
