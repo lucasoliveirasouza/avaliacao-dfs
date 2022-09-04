@@ -80,7 +80,7 @@ public class EditoraController {
         Optional<Editora> editora = editoraRepository.findById(id);
         if(editora.isPresent()){
             editoraRepository.delete(editora.get());
-            return new ResponseEntity<>(HttpStatus.OK);
+            return ResponseEntity.ok("Editora excluída com sucesso");
         }
         else
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

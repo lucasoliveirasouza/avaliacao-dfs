@@ -80,7 +80,7 @@ public class AutorController {
         Optional<Autor> autor = autorRepository.findById(id);
         if(autor.isPresent()){
             autorRepository.delete(autor.get());
-            return new ResponseEntity<>(HttpStatus.OK);
+            return ResponseEntity.ok("Autor excluído com sucesso");
         }
         else
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

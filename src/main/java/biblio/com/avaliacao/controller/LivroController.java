@@ -80,7 +80,7 @@ public class LivroController {
         Optional<Livro> genero = livroRepository.findById(id);
         if(genero.isPresent()){
             livroRepository.delete(genero.get());
-            return new ResponseEntity<>(HttpStatus.OK);
+            return ResponseEntity.ok("Livro excluído com sucesso");
         }
         else
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

@@ -80,7 +80,7 @@ public class GeneroController {
         Optional<Genero> genero = generoRepository.findById(id);
         if(genero.isPresent()){
             generoRepository.delete(genero.get());
-            return new ResponseEntity<>(HttpStatus.OK);
+            return ResponseEntity.ok("Gênero excluído com sucesso");
         }
         else
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
