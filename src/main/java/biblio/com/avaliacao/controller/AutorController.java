@@ -40,17 +40,16 @@ public class AutorController {
 
     @ApiOperation(value="Cadastra um novo autor")
     @PostMapping("/autor")
-    public ResponseEntity<?> cadastrarAutor(@Valid @RequestBody Autor autor, BindingResult result)
+    public ResponseEntity<Response<Autor>> cadastrarAutor(@Valid @RequestBody Autor autor, BindingResult result)
     {
         Response<Autor> response = new Response<Autor>();
 
-        if (result.hasErrors()) {
+        if (autorRepository.existsByNome(autor.getNome())) {
+            response.getErrors().add("Já existe um autor com esse nome");
+        }
+        if (result.hasErrors() || response.getErrors().size() > 0) {
             result.getAllErrors().forEach(error -> response.getErrors().add(error.getDefaultMessage()));
             return ResponseEntity.badRequest().body(response);
-        }
-
-        if (autorRepository.existsByNome(autor.getNome())) {
-            return ResponseEntity.badRequest().body(new MessageResponse("Erro: Já existe um autor com esse nome"));
         }
         autorRepository.save(autor);
         response.setData(autor);
