@@ -1,6 +1,9 @@
 package biblio.com.avaliacao.controller;
 
 import biblio.com.avaliacao.model.Livro;
+import biblio.com.avaliacao.repository.AutorRepository;
+import biblio.com.avaliacao.repository.EditoraRepository;
+import biblio.com.avaliacao.repository.GeneroRepository;
 import biblio.com.avaliacao.repository.LivroRepository;
 import biblio.com.avaliacao.responses.Response;
 import io.swagger.annotations.ApiOperation;
@@ -20,6 +23,15 @@ public class LivroController {
 
     @Autowired
     LivroRepository livroRepository;
+
+    @Autowired
+    AutorRepository autorRepository;
+
+    @Autowired
+    GeneroRepository generoRepository;
+
+    @Autowired
+    EditoraRepository editoraRepository;
 
     @ApiOperation(value="Mostra lista de livros")
     @GetMapping("/livro")
@@ -43,8 +55,18 @@ public class LivroController {
     @PostMapping("/livro")
     public ResponseEntity<Response<Livro>> cadastrarLivro(@Valid @RequestBody Livro livro, BindingResult result)
     {
+
         Response<Livro> response = new Response<Livro>();
-        if (result.hasErrors()) {
+        if (!autorRepository.existsById(livro.getAutor().getId())) {
+            response.getErrors().add("O autor inserido é inválido");
+        }
+        if (!generoRepository.existsById(livro.getGenero().getId())) {
+            response.getErrors().add("O gênero inserido é inválido");
+        }
+        if (!editoraRepository.existsById(livro.getEditora().getId())) {
+            response.getErrors().add("A editora inserida é inválida");
+        }
+        if (result.hasErrors() || response.getErrors().size() > 0) {
             result.getAllErrors().forEach(error -> response.getErrors().add(error.getDefaultMessage()));
             return ResponseEntity.badRequest().body(response);
         }
@@ -60,7 +82,17 @@ public class LivroController {
     {
         Optional<Livro> antigoLivro = livroRepository.findById(id);
         Response<Livro> response = new Response<Livro>();
-        if (result.hasErrors()) {
+
+        if (!autorRepository.existsById(novoLivro.getAutor().getId())) {
+            response.getErrors().add("O autor inserido é inválido");
+        }
+        if (!generoRepository.existsById(novoLivro.getGenero().getId())) {
+            response.getErrors().add("O gênero inserido é inválido");
+        }
+        if (!editoraRepository.existsById(novoLivro.getEditora().getId())) {
+            response.getErrors().add("A editora inserida é inválida");
+        }
+        if (result.hasErrors()  || response.getErrors().size() > 0) {
             result.getAllErrors().forEach(error -> response.getErrors().add(error.getDefaultMessage()));
             return ResponseEntity.badRequest().body(response);
         }
