@@ -57,13 +57,13 @@ public class LivroController {
     {
 
         Response<Livro> response = new Response<Livro>();
-        if (!autorRepository.existsById(livro.getAutor().getId())) {
+        if (livro.getAutor() != null && !autorRepository.existsById(livro.getAutor().getId())) {
             response.getErrors().add("O autor inserido é inválido");
         }
-        if (!generoRepository.existsById(livro.getGenero().getId())) {
+        if (livro.getGenero() != null && !generoRepository.existsById(livro.getGenero().getId())) {
             response.getErrors().add("O gênero inserido é inválido");
         }
-        if (!editoraRepository.existsById(livro.getEditora().getId())) {
+        if (livro.getEditora() != null && !editoraRepository.existsById(livro.getEditora().getId())) {
             response.getErrors().add("A editora inserida é inválida");
         }
         if (result.hasErrors() || response.getErrors().size() > 0) {
@@ -83,13 +83,13 @@ public class LivroController {
         Optional<Livro> antigoLivro = livroRepository.findById(id);
         Response<Livro> response = new Response<Livro>();
 
-        if (!autorRepository.existsById(novoLivro.getAutor().getId())) {
+        if (novoLivro.getAutor() != null && !autorRepository.existsById(novoLivro.getAutor().getId())) {
             response.getErrors().add("O autor inserido é inválido");
         }
-        if (!generoRepository.existsById(novoLivro.getGenero().getId())) {
+        if (novoLivro.getGenero() != null && !generoRepository.existsById(novoLivro.getGenero().getId())) {
             response.getErrors().add("O gênero inserido é inválido");
         }
-        if (!editoraRepository.existsById(novoLivro.getEditora().getId())) {
+        if (novoLivro.getEditora() != null && !editoraRepository.existsById(novoLivro.getEditora().getId())) {
             response.getErrors().add("A editora inserida é inválida");
         }
         if (result.hasErrors()  || response.getErrors().size() > 0) {
