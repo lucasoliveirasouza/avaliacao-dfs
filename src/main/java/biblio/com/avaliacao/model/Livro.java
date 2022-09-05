@@ -9,6 +9,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Getter
@@ -36,12 +37,15 @@ public class Livro {
     @Min(value = 1, message = "Para cadastrar um novo exemplar, é necessário existir pelo menos uma unidade")
     private int quantidade;
 
+    @NotNull(message = "O autor não pode ser nulo")
     @ManyToOne
     private Autor autor;
 
+    @NotNull(message = "A editora não pode ser nula")
     @ManyToOne
     private Editora editora;
 
+    @NotNull(message = "O gênero não pode ser nulo")
     @ManyToOne
     private Genero genero;
 }
